@@ -13,6 +13,7 @@
 		4160B0D62B3183E7004F305E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4160B0D52B3183E7004F305E /* Preview Assets.xcassets */; };
 		4160B0EA2B318950004F305E /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160B0E92B318950004F305E /* ExploreView.swift */; };
 		4160B0EC2B318A73004F305E /* ListingItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160B0EB2B318A73004F305E /* ListingItemView.swift */; };
+		41FA73DF2B31E26E00531226 /* SearchAndFilterBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FA73DE2B31E26E00531226 /* SearchAndFilterBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		4160B0D52B3183E7004F305E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4160B0E92B318950004F305E /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
 		4160B0EB2B318A73004F305E /* ListingItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingItemView.swift; sourceTree = "<group>"; };
+		41FA73DE2B31E26E00531226 /* SearchAndFilterBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAndFilterBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				4160B0E92B318950004F305E /* ExploreView.swift */,
+				41FA73DE2B31E26E00531226 /* SearchAndFilterBar.swift */,
 			);
 			path = Explore;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				4160B0D12B3183E5004F305E /* ContentView.swift in Sources */,
 				4160B0EC2B318A73004F305E /* ListingItemView.swift in Sources */,
 				4160B0EA2B318950004F305E /* ExploreView.swift in Sources */,
+				41FA73DF2B31E26E00531226 /* SearchAndFilterBar.swift in Sources */,
 				4160B0CF2B3183E5004F305E /* Airbnb_CloneApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
