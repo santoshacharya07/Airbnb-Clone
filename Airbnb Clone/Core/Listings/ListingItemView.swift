@@ -16,22 +16,17 @@ struct ListingItemView: View {
     var body: some View {
         VStack(spacing:8){
             //images
-            TabView{
-                ForEach(images, id:\.self){image in
-                    Image(image)
-                        .resizable()
-                        .scaledToFill()
-                }
-            }
-            .frame(height: 320)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .tabViewStyle(.page)
+            ListingImageCaroselView()
+                .frame(height: 320)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+            
             //Listing Details
             HStack(alignment:.top){
                 //details
                 VStack(alignment:.leading) {
                     Text("Kathmandu, Bagmati")
                         .fontWeight(.semibold)
+                        .foregroundStyle(.black)
                     Text("12 km Away")
                         .foregroundStyle(.gray)
                     Text("Nov 3-2022")
@@ -41,6 +36,7 @@ struct ListingItemView: View {
                             .fontWeight(.semibold)
                         Text("night")
                     }
+             .foregroundStyle(.black)
                 }
                 Spacer()
                 //rating
@@ -48,6 +44,7 @@ struct ListingItemView: View {
                     Image(systemName: "star.fill")
                     Text("4.56")
                 }
+                .foregroundStyle(.black)
                
                 
             }
