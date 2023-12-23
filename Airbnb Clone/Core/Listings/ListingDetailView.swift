@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct ListingDetailView: View {
     var images=[
@@ -13,10 +14,26 @@ struct ListingDetailView: View {
     "listing-2",
     "listing-3",
     "listing-4",]
+    @Environment(\.dismiss) var dismiss
     var body: some View {
         ScrollView{
-            ListingImageCaroselView()
-                .frame(height: 320)
+            ZStack(alignment:.topLeading) {
+                
+                ListingImageCaroselView()
+                    .frame(height: 320)
+                Button(action: {
+                    dismiss()
+                }, label: {
+                    Image(systemName: "chevron.left")
+                        .foregroundStyle(.black)
+                        .background{
+                            Circle()
+                                .fill(.white)
+                                .frame(width: 32,height: 32)
+                        }
+                        .padding(32)
+                })
+            }
             
             VStack(alignment:.leading, spacing: 8)
             {
@@ -59,7 +76,7 @@ struct ListingDetailView: View {
                     .font(.caption)
                 }
                 .frame(width: 300,alignment: .leading)
-                Spacer()
+               Spacer()
                 Image("soltihotel-profile-photo")
                     .resizable()
                     .scaledToFill()
@@ -84,12 +101,96 @@ struct ListingDetailView: View {
                                 .foregroundStyle(.gray)
                         }
                     }
-                    Spacer()
                     
                 }
             }
             .padding()
             
+            Divider()
+            
+            //bedroom view
+            VStack(alignment:.leading,spacing:16){
+                Text("Where you' will Enjoy")
+                    .font(.headline)
+                ScrollView(.horizontal, showsIndicators: false){
+                    HStack(spacing:16){
+                        ForEach(1 ..< 5){bedroom in
+                            VStack{
+                                Image(systemName: "bed.double")
+                                Text("Beedroom\(bedroom)")
+                            }
+                            .frame(width: 132,height: 100)
+                            .overlay{
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(lineWidth: 1)
+                                    .foregroundColor(.gray)
+                            }
+                        }
+                    }
+                }
+                .scrollTargetBehavior(.paging)
+            }
+            .padding()
+            Divider()
+            //listing amenities
+            VStack(alignment:.leading,spacing:16){
+                Text("What this place offers")
+                    .font(.headline)
+                ForEach(0 ..< 5){feature in
+                    HStack{
+                        Image(systemName: "wifi")
+                            .frame(width: 32)
+                        Text("Wifi")
+                            .font(.footnote)
+                        Spacer()
+                    }
+                }
+            }
+            .padding()
+            Divider()
+            VStack(alignment:.leading, spacing: 16){
+                Text("Where you'll be")
+                    .font(.headline)
+                
+                Map().frame(height: 200)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                    
+                
+            }
+            .padding()
+        }
+        .ignoresSafeArea()
+        .padding(.bottom,64)
+        .overlay(alignment:.bottom){
+            VStack{
+                Divider()
+                    .padding(.bottom)
+                HStack{
+                    VStack{
+                        Text("$500")
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                        Text("Total before taxes")
+                            .font(.footnote)
+                        Text("Dec-23-23")
+                            .font(.footnote)
+                            .fontWeight(.semibold)
+                            .underline()
+                    }
+                    Spacer()
+                    Button{}label: {
+                        Text("Reverse")
+                            .foregroundStyle(.white)
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                            .frame(width: 140, height: 40)
+                            .background(.pink)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                    }
+                }
+                .padding(.horizontal,32)
+            }
+            .background(.white)
         }
     }
 }
