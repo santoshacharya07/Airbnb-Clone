@@ -9,30 +9,29 @@ import SwiftUI
 import MapKit
 
 struct ListingDetailView: View {
-    var images=[
-    "listing-1",
-    "listing-2",
-    "listing-3",
-    "listing-4",]
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) 
+    var dismiss
+    
     var body: some View {
         ScrollView{
             ZStack(alignment:.topLeading) {
                 
                 ListingImageCaroselView()
                     .frame(height: 320)
-                Button(action: {
+
+                Button {
                     dismiss()
-                }, label: {
+                } label: {
                     Image(systemName: "chevron.left")
                         .foregroundStyle(.black)
-                        .background{
+                        .background {
                             Circle()
                                 .fill(.white)
-                                .frame(width: 32,height: 32)
+                                .frame(width: 32, height: 32)
                         }
                         .padding(32)
-                })
+                }
+
             }
             
             VStack(alignment:.leading, spacing: 8)
@@ -159,6 +158,7 @@ struct ListingDetailView: View {
             }
             .padding()
         }
+        .toolbar(.hidden, for: .tabBar)
         .ignoresSafeArea()
         .padding(.bottom,64)
         .overlay(alignment:.bottom){
@@ -179,7 +179,7 @@ struct ListingDetailView: View {
                     }
                     Spacer()
                     Button{}label: {
-                        Text("Reverse")
+                        Text("Reserve")
                             .foregroundStyle(.white)
                             .font(.subheadline)
                             .fontWeight(.semibold)

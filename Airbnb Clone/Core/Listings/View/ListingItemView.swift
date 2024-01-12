@@ -19,11 +19,10 @@ struct ListingItemView: View {
             ListingImageCaroselView()
                 .frame(height: 320)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
-            
             //Listing Details
             HStack(alignment:.top){
                 //details
-                VStack(alignment:.leading) {
+                VStack(alignment: .leading) {
                     Text("Kathmandu, Bagmati")
                         .fontWeight(.semibold)
                         .foregroundStyle(.black)
@@ -45,14 +44,10 @@ struct ListingItemView: View {
                     Text("4.56")
                 }
                 .foregroundStyle(.black)
-               
-                
             }
             .font(.footnote)
-            
         }
         .padding()
-
     }
 }
 
