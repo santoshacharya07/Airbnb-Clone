@@ -11,12 +11,13 @@ import MapKit
 struct ListingDetailView: View {
     @Environment(\.dismiss) 
     var dismiss
+    let listing: Listing
     
     var body: some View {
         ScrollView{
             ZStack(alignment:.topLeading) {
                 
-                ListingImageCaroselView()
+                ListingImageCaroselView(listing: listing)
                     .frame(height: 320)
 
                 Button {
@@ -36,14 +37,14 @@ struct ListingDetailView: View {
             
             VStack(alignment:.leading, spacing: 8)
             {
-                Text("Soaltee Hotel")
+                Text("\(listing.title)")
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                     .fontWeight(.semibold)
                 
                 VStack(alignment:.leading){
                     HStack(spacing:2){
                         Image(systemName: "star.fill")
-                        Text("4.56")
+                        Text("\(listing.rating)")
                         Text(" - ")
                         Text("30 reviews")
                             .underline()
@@ -51,7 +52,7 @@ struct ListingDetailView: View {
                     }
                     
                     .foregroundStyle(.black)
-                    Text("Kathmandu, Bagmati")
+                    Text("\(listing.address), \(listing.state)")
                 }
                 .font(.caption)
             }
@@ -63,20 +64,20 @@ struct ListingDetailView: View {
             //host info view
             HStack{
                 VStack(alignment:.leading,spacing: 4){
-                    Text("One of the best Hotel in Nepal")
+                    Text("Entire \(listing.type.descriptiom) in Nepal hosted by \(listing.ownerName)")
                         .font(.headline)
                      .frame(width: 250, alignment: .leading)
                     HStack(spacing:2){
-                        Text("4 guest - ")
-                        Text("4 beadrooms - ")
-                        Text("4 beds - ")
-                        Text("4 baths")
+                        Text("\(listing.numberOfGuests) guest - ")
+                        Text("\(listing.numberOfBedRooms) beadrooms - ")
+                        Text("\(listing.numberOfBeds) beds - ")
+                        Text("\(listing.numberOfBathrooms) baths")
                     }
                     .font(.caption)
                 }
                 .frame(width: 300,alignment: .leading)
                Spacer()
-                Image("soltihotel-profile-photo")
+                Image("\(listing.ownerImageUrl)")
                     .resizable()
                     .scaledToFill()
                     .frame(width: 64,height: 64)
@@ -88,19 +89,19 @@ struct ListingDetailView: View {
             
             //listing features
             VStack(alignment:.leading,spacing: 16){
-                ForEach(0 ..< 2){feature in
+                ForEach(listing.features){feature in
                     HStack(spacing:12){
-                        Image(systemName: "medal")
+                        Image(systemName: feature.imageName)
                         VStack(alignment:.leading){
-                            Text("Best Hotel")
+                            Text(feature.title)
                                 .font(.footnote)
                                 .fontWeight(.semibold)
-                            Text("A landmark in the city of Kathmandu with a rich heritage, the hotel is the proud recipient of several prestigious awards and accolades over the years.")
+                            Text(feature.subtitle)
                                 .font(.caption)
                                 .foregroundStyle(.gray)
                         }
                     }
-                    
+                    Spacer()
                 }
             }
             .padding()
@@ -109,14 +110,14 @@ struct ListingDetailView: View {
             
             //bedroom view
             VStack(alignment:.leading,spacing:16){
-                Text("Where you' will Enjoy")
+                Text("Where you'll sleep")
                     .font(.headline)
                 ScrollView(.horizontal, showsIndicators: false){
                     HStack(spacing:16){
-                        ForEach(1 ..< 5){bedroom in
+                        ForEach(1 ... listing.numberOfBedRooms, id: \.self){ bedroom in
                             VStack{
                                 Image(systemName: "bed.double")
-                                Text("Beedroom\(bedroom)")
+                                Text("Beedroom \(bedroom)")
                             }
                             .frame(width: 132,height: 100)
                             .overlay{
@@ -131,15 +132,16 @@ struct ListingDetailView: View {
             }
             .padding()
             Divider()
+            
             //listing amenities
             VStack(alignment:.leading,spacing:16){
                 Text("What this place offers")
                     .font(.headline)
-                ForEach(0 ..< 5){feature in
+                ForEach(listing.amenities){amenity in
                     HStack{
-                        Image(systemName: "wifi")
+                        Image(systemName: amenity.imageName)
                             .frame(width: 32)
-                        Text("Wifi")
+                        Text(amenity.title)
                             .font(.footnote)
                         Spacer()
                     }
@@ -167,7 +169,7 @@ struct ListingDetailView: View {
                     .padding(.bottom)
                 HStack{
                     VStack{
-                        Text("$500")
+                        Text("Rs. \(listing.pricePerNight)")
                             .font(.subheadline)
                             .fontWeight(.semibold)
                         Text("Total before taxes")
@@ -196,5 +198,5 @@ struct ListingDetailView: View {
 }
 
 #Preview {
-    ListingDetailView()
+    ListingDetailView( listing: DeveloperPreview.shared.listings[3])
 }
