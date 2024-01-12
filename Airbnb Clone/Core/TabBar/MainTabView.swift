@@ -13,9 +13,9 @@ struct MainTabView: View {
             ExploreView()
                 .tabItem { Label("Explore", systemImage: "magnifyingglass") }
             WishListView()
-                .tabItem { Label("Explore", systemImage: "heart") }
+                .tabItem { Label("Wishlist", systemImage: "heart") }
             ProfileView()
-                .tabItem { Label("Explore", systemImage: "person") }
+                .tabItem { Label("Profile", systemImage: "person") }
         }
     }
 }
